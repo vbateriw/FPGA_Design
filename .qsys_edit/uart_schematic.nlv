@@ -1,0 +1,24 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst uart.UART_0 -pg 1 -lvl 3 -y 210
+preplace inst uart.NIOS2 -pg 1 -lvl 2 -y 360
+preplace inst uart.CLK_50 -pg 1 -lvl 1 -y 380
+preplace inst uart.UART_1 -pg 1 -lvl 3 -y 430
+preplace inst uart.JTAG_UART -pg 1 -lvl 3 -y 110
+preplace inst uart.OCRAM -pg 1 -lvl 3 -y 30
+preplace inst uart -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst uart.NIOS2.cpu -pg 1
+preplace inst uart.NIOS2.clock_bridge -pg 1
+preplace inst uart.LED -pg 1 -lvl 3 -y 330
+preplace inst uart.NIOS2.reset_bridge -pg 1
+preplace netloc EXPORT<net_container>uart</net_container>(SLAVE)uart.uart_0_external_connection,(SLAVE)UART_0.external_connection) 1 0 3 NJ 240 NJ 240 NJ
+preplace netloc INTERCONNECT<net_container>uart</net_container>(SLAVE)UART_1.reset,(SLAVE)OCRAM.reset1,(SLAVE)UART_0.reset,(SLAVE)NIOS2.reset,(MASTER)NIOS2.debug_reset_request,(SLAVE)JTAG_UART.reset,(SLAVE)LED.reset,(MASTER)CLK_50.clk_reset) 1 1 2 400 320 860
+preplace netloc EXPORT<net_container>uart</net_container>(SLAVE)uart.reset,(SLAVE)CLK_50.clk_in_reset) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>uart</net_container>(SLAVE)UART_1.irq,(SLAVE)JTAG_UART.irq,(MASTER)NIOS2.irq,(SLAVE)UART_0.irq) 1 2 1 820
+preplace netloc INTERCONNECT<net_container>uart</net_container>(MASTER)NIOS2.data_master,(SLAVE)OCRAM.s1,(SLAVE)JTAG_UART.avalon_jtag_slave,(SLAVE)UART_1.s1,(SLAVE)LED.s1,(MASTER)NIOS2.instruction_master,(SLAVE)NIOS2.debug_mem_slave,(SLAVE)UART_0.s1) 1 1 2 420 300 780
+preplace netloc EXPORT<net_container>uart</net_container>(SLAVE)uart.clk,(SLAVE)CLK_50.clk_in) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>uart</net_container>(SLAVE)UART_1.clk,(SLAVE)JTAG_UART.clk,(SLAVE)NIOS2.clk,(SLAVE)OCRAM.clk1,(SLAVE)LED.clk,(SLAVE)UART_0.clk,(MASTER)CLK_50.clk) 1 1 2 380 280 840
+preplace netloc EXPORT<net_container>uart</net_container>(SLAVE)uart.uart_1_external_connection,(SLAVE)UART_1.external_connection) 1 0 3 NJ 500 NJ 500 NJ
+preplace netloc EXPORT<net_container>uart</net_container>(SLAVE)uart.led_external_connection,(SLAVE)LED.external_connection) 1 0 3 NJ 260 NJ 260 NJ
+levelinfo -pg 1 0 170 1050
+levelinfo -hier uart 180 210 540 890 1040

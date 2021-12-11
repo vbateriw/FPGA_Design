@@ -1,0 +1,4 @@
+nios2-elf-objcopy.exe: './Found': No such file
+./Found.srec: Unable to open input file
+rm: cannot remove './Found.srec': No such file or directory
+nios2-download: error: wrapper script can only download one file at a time
